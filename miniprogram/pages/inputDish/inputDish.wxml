@@ -1,0 +1,24 @@
+<!--miniprogram/pages/inputDish/inputDish.wxml-->
+<form>
+  <view>
+    <view>菜名</view>
+    <input bindinput='bindInputDishName' value='{{dishName}}'></input>
+  </view>
+  <view>
+    <view>食材</view>
+    <input bindinput='bindInputIngredientName' value='{{ingredientName}}'></input>
+  </view>
+  <view>
+    <view>常见级别</view>
+    <picker bindchange="bindPickerChange" value='{{index}}' range="{{array}}">
+    <view class='picker'>{{array[index]}}</view>
+  </picker>
+  </view>
+  <view>
+    <view>做法</view>
+    <textarea bindinput='bindInputHowToCook' value='{{howToCook}}'></textarea>
+  </view>
+  <view>
+    <button form-type='submit' bindtap='newDish' type='primary'>新增</button>
+  </view>
+</form>

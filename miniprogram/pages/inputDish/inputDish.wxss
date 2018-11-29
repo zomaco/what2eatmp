@@ -1,0 +1,14 @@
+/* miniprogram/pages/inputDish/inputDish.wxss */
+input, textarea {
+  border: 1rpx solid green;
+  width: inherit;
+}
+
+view, input {
+  padding: 10rpx;
+}
+
+.picker {
+  border: 1rpx solid green;
+  padding: 10rpx;
+}
