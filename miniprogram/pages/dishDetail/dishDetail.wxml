@@ -1,0 +1,22 @@
+<!--miniprogram/pages/dishDetail/dishDetail.wxml-->
+<view>{{dishData.dishName}}</view>
+<view>
+  <view class='tableHeader'>
+    <view class='column1'>所需食材</view>
+    <view class='column2'>剩余数量</view>
+    <view class='column3'>操作</view>
+  </view>
+  <view class='tableRow' wx:for='{{dishData.ingredients}}' wx:key='id'>
+    <view class='column1'>{{item.name}}</view>
+    <view class='column2'>{{item.quantity}}</view>
+    <view class='column3'>
+      <button>移除</button>
+    </view>
+  </view>
+</view>
+<view class='tableRow'>
+  <input placeholder='添加食材' class='bindRecipeInput'></input>
+  <button>添加</button>
+</view>
+<textarea value='{{dishData.howToCook}}'></textarea>
+<button>更新</button>

@@ -1,5 +1,4 @@
 {
-  "qcloudRoot": "./miniprogram",
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {

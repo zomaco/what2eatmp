@@ -1,0 +1,29 @@
+/* miniprogram/pages/dishDetail/dishDetail.wxss */
+
+.tableHeader {
+  display: flex;
+  flex-direction: row;
+  background: green;
+  color: white;
+  padding: 10rpx;
+}
+
+.tableRow {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx;
+  /* border-bottom: 1rpx solid green; */
+}
+
+.column1, .column2 {
+  margin-left: 20rpx;
+  min-width: 200rpx;
+}
+
+.column3 {
+  margin-left: 20rpx;
+}
+
+.bindRecipeInput {
+  border: 1rpx solid green;
+}

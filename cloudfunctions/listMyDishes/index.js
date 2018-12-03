@@ -15,6 +15,7 @@ exports.main = async(event, context) => {
   for (var i = 0; i < dishes.length; i++) {
     const date = new Date(dishes[i].lastDate);
     retList[i] = {
+      id: dishes[i]._id,
       name: dishes[i].name,
       category: dishes[i].category,
       lastDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
