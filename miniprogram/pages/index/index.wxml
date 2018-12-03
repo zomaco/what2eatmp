@@ -56,4 +56,11 @@
     </navigator>
   </view>
 
+  <!-- 列出所有食材 -->
+  <view class="uploader">
+    <navigator url="../showIngredients/showIngredients" open-type="navigate" class="uploader-text">
+      <text>列出所有食材</text>
+    </navigator>
+  </view>
+
 </view>

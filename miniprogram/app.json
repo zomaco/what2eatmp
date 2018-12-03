@@ -3,13 +3,14 @@
     "pages/index/index",
     "pages/showDishes/showDishes",
     "pages/inputDish/inputDish",
+    "pages/dishDetail/dishDetail",
+    "pages/showIngredients/showIngredients",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/dishDetail/dishDetail"
+    "pages/chooseLib/chooseLib"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
