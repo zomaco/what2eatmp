@@ -10,13 +10,13 @@
     <view class='column1'>{{item.name}}</view>
     <view class='column2'>{{item.quantity}}</view>
     <view class='column3'>
-      <button>移除</button>
+      <button bindtap='unbindRecipeBtn' data-dish-id='{{dishData.dishId}}' data-ingredient-id='{{item.id}}'>移除</button>
     </view>
   </view>
 </view>
 <view class='tableRow'>
-  <input placeholder='添加食材' class='bindRecipeInput'></input>
-  <button>添加</button>
+  <input placeholder='添加食材' class='bindRecipeInput' value='{{bindRecipeName}}' bindinput='bindInputBindRecipeName'></input>
+  <button bindtap='bindRecipeBtn' data-dish-id='{{dishData.dishId}}'>添加</button>
 </view>
-<textarea value='{{dishData.howToCook}}'></textarea>
-<button>更新</button>
+<textarea bindinput='bindInputHowToCook' value='{{dishData.howToCook}}'></textarea>
+<button bindtap='updateHowToCookBtn' data-dish-id='{{dishData.dishId}}'>更新</button>

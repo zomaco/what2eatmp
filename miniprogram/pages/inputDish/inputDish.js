@@ -129,7 +129,7 @@ Page({
             title: 'OK',
             duration: 3000,
             complete: () => {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '../index/index'
               });
             }

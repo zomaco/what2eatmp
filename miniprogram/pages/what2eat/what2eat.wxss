@@ -1,0 +1,24 @@
+/* miniprogram/pages/what2eat/what2eat.wxss */
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonLike {
+  border: 1rpx solid green;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  margin: 5rpx;
+}
+
+.primaryButton {
+  background-color: green;
+  color: white;
+}
+
+.listItem {
+  border: 1rpx solid green;
+  padding: 10rpx;
+  margin-bottom: 10rpx;
+}

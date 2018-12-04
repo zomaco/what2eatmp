@@ -1,0 +1,8 @@
+<!--miniprogram/pages/what2eat/what2eat.wxml-->
+<button bindtap='roll'>换一换</button>
+<view wx:for='{{list}}' wx:key='name' class='listItem'>
+  <view class='buttonRow'>
+    <view>名称：{{item.dishName}}</view>
+    <view class='buttonLike primaryButton' data-id='{{item.dishId}}' bindtap='iMadeBtn'>做这个！</view>
+  </view>
+</view>

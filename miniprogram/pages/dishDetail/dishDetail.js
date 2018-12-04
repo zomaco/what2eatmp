@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dishData: null
+    dishData: null,
+    bindRecipeName: '',
+    howToCook: ''
   },
 
   /**
@@ -77,5 +79,102 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+
+  unbindRecipeBtn: function(e) {
+    wx.cloud.callFunction({
+      name: 'unbindRecipe',
+      data: {
+        dishId: e.target.dataset.dishId,
+        ingredientId: e.target.dataset.ingredientId
+      },
+      success: res => {
+        wx.showToast({
+          title: 'OK',
+          duration: 3000,
+          complete: () => {
+            wx.redirectTo({
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+            });
+          }
+        });
+      },
+      fail: err => {
+        wx.showToast({
+          title: 'fail'
+        })
+      }
+    });
+  },
+
+  bindRecipeBtn: function(e) {
+    if (this.data.bindRecipeName == '') {
+      wx.showToast({
+        title: '需要填写食材名',
+        icon: 'none'
+      })
+      return;
+    }
+    wx.cloud.callFunction({
+      name: 'bindRecipe',
+      data: {
+        dishId: e.target.dataset.dishId,
+        ingredientName: this.data.bindRecipeName
+      },
+      success: res => {
+        wx.showToast({
+          title: 'OK',
+          duration: 3000,
+          complete: () => {
+            wx.redirectTo({
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+            });
+          }
+        });
+      },
+      fail: err => {
+        wx.showToast({
+          title: 'fail'
+        })
+      }
+    });
+  },
+
+  bindInputBindRecipeName: function(e) {
+    this.setData({
+      bindRecipeName: e.detail.value
+    });
+  },
+
+  updateHowToCookBtn: function(e) {
+    wx.cloud.callFunction({
+      name: 'dishUpdate',
+      data: {
+        dishId: e.target.dataset.dishId,
+        howToCook: this.data.howToCook
+      },
+      success: res => {
+        wx.showToast({
+          title: 'OK',
+          duration: 3000,
+          complete: () => {
+            wx.redirectTo({
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+            });
+          }
+        });
+      },
+      fail: err => {
+        wx.showToast({
+          title: 'fail'
+        })
+      }
+    });
+  },
+
+  bindInputHowToCook: function (e) {
+    this.setData({
+      howToCook: e.detail.value
+    })
+  },
 })

@@ -63,4 +63,11 @@
     </navigator>
   </view>
 
+  <!-- 吃点啥 -->
+  <view class="uploader">
+    <navigator url="../what2eat/what2eat" open-type="navigate" class="uploader-text">
+      <text>吃点啥？</text>
+    </navigator>
+  </view>
+
 </view>

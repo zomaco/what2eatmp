@@ -1,10 +1,12 @@
-// pages/showDishes/showDishes.js
+// miniprogram/pages/what2eat/what2eat.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    callTimes: 0,
+    categories: '',
     list: []
   },
 
@@ -13,11 +15,14 @@ Page({
    */
   onLoad: function(options) {
     wx.cloud.callFunction({
-      name: 'listMyDishes',
-      data: {},
+      name: 'whatToEat',
+      data: {
+        callTimes: this.data.callTimes,
+        categories: this.data.categories
+      },
       success: res => {
-        console.log(res.result);
         this.setData({
+          callTimes: this.data.callTimes + 1,
           list: res.result.data
         });
       },
@@ -78,32 +83,11 @@ Page({
 
   },
 
-  dishDeleteBtn: function(e) {
-    wx.cloud.callFunction({
-      name: 'dishDelete',
-      data: {
-        dishId: e.target.dataset.id
-      },
-      success: res => {
-        wx.showToast({
-          title: 'OK',
-          duration: 3000,
-          complete: () => {
-            wx.redirectTo({
-              url: '../showDishes/showDishes'
-            });
-          }
-        });
-      },
-      fail: err => {
-        wx.showToast({
-          title: 'fail'
-        })
-      }
-    });
+  roll: function(e) {
+    this.onLoad();
   },
 
-  iMadeBtn: function (e) {
+  iMadeBtn: function(e) {
     wx.cloud.callFunction({
       name: 'iMade',
       data: {

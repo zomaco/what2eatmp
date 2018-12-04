@@ -6,13 +6,13 @@
       <view>难易度：{{item.category}}</view>
       <view>上次吃的日期：{{item.lastDate}}</view>
       <view class='buttonRow'>
-        <view class='buttonLike primaryButton' data-id='{{item.id}}'>做这个！</view>
+        <view class='buttonLike primaryButton' data-id='{{item.id}}' bindtap='iMadeBtn'>做这个！</view>
         <view class='buttonLike' data-id='{{item.id}}'>
           <navigator url="../dishDetail/dishDetail?dishId={{item.id}}" open-type="navigate">
             <text>查看</text>
           </navigator>
         </view>
-        <view class='buttonLike' data-id='{{item.id}}'>删除</view>
+        <view class='buttonLike' data-id='{{item.id}}' bindtap='dishDeleteBtn'>删除</view>
       </view>
     </view>
   </scroll-view>
