@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     avatarUrl: './user-unlogin.png',
+    timgUrl: './timg.jpg',
     userInfo: {},
     logged: false,
     takeSession: false,

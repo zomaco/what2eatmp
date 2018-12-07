@@ -1,28 +1,25 @@
 <!--pages/showIngredients/showIngredients.wxml-->
-<view class="table">
-  <view class="tr bg-w">
-    <view class="th">名称</view>
-    <view class="th">数量</view>
-    <view class="th ">操作</view>
+<view>
+<scroll-view scroll-y>
+  <view wx:for='{{list}}' wx:key='name' class='listItem'>
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view>名称：{{item.name}}</view>
+      <view>数量:{{item.quantity}}</view>
+      <view class='buttonRow'>
+        <view class='buttonLike' data-id='{{item.id}}' bindtap='getDishes'>
+            <text>查看</text>
+        </view>
+      </view>
+    </view>
+    <view class="tr" wx:else>
+      <view>名称：{{item.name}}</view>
+      <view>数量:{{item.quantity}}</view>
+      <view class='buttonRow'>
+        <view class='buttonLike' data-id='{{item.id}}' bindtap='getDishes'>
+          <text>查看</text>>
+        </view>
+      </view>
+    </view>
   </view>
-  <checkbox-group bindchange="checkboxChange">
-    <block wx:for='{{list}}' wx:key='name' class='listItem'>
-      <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-        <checkbox value="{{item.id}}" />
-        <view class="td">{{item.name}}</view>
-        <view class="td">{{item.quantity}}</view>
-        <view class='buttonRow'>
-          <view class='buttonDelete' data-id='{{item.id}}' type="default" bindtap='ingredientDelete'>删除</view>
-        </view>
-      </view>
-      <view class="tr" wx:else>
-        <checkbox value="{{item.id}}" />
-        <view class="td">{{item.name}}</view>
-        <view class="td">{{item.quantity}}</view>
-        <view class='buttonRow'>
-          <view class='buttonDelete' data-id='{{item.id}}' type="default" bindtap='ingredientDelete'>删除</view>
-        </view>
-      </view>
-    </block>
-  </checkbox-group>
+    </scroll-view>
 </view>

@@ -1,33 +1,17 @@
-// pages/showIngredients/showIngredients.js
+// pages/home/home.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: []
+    chiShaUrl: './chisha.jpg'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('showIngredients start----------------');
-    wx.cloud.callFunction({
-      name: 'listMyIngredients',
-      data: {},
-      success: res => {
-        console.log(res.result);
-        this.setData({
-          list: res.result.data
-        });
-      },
-      fail: err => {
-        wx.showToast({
-          title: 'fail'
-        })
-      }
-    });
 
   },
 
@@ -42,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**
@@ -78,21 +62,5 @@ Page({
    */
   onShareAppMessage: function() {
 
-  },
-
-  /**
-   * 食材
-   */
-  getDishes: function(e) {
-    var ingredientId = e.currentTarget.dataset.id;
-    wx.showToast({
-      title: 'OK',
-      duration: 3000,
-      complete: () => {
-        wx.redirectTo({
-          url: '../showDishes/showDishes?ingredientId=' + ingredientId
-        });
-      }
-    });
   }
 })

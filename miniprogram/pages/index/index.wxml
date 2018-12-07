@@ -70,4 +70,6 @@
     </navigator>
   </view>
 
+  <image class='sizeModal-img' mode='scaleToFill' src='{{timgUrl}}'></image>
+
 </view>

@@ -1,0 +1,56 @@
+// 云函数入口文件
+const cloud = require('wx-server-sdk')
+
+cloud.init()
+
+// 云函数入口函数
+exports.main = async(event, context) => {
+  console.log('listDishes start----------------');
+  var retList = new Array();
+  // 食材id
+  const id = event.id;
+  console.log('ingredientId:' + id);
+  if (id != null && id != '') {
+    // 查询食材关联菜单id
+    const db = cloud.database();
+    const _ = db.command;
+    const dishIdResult = await db.collection('recipe').where({
+      ingredientId: id
+    }).field({
+      dishId: true
+    }).get();
+
+    // 菜单id
+    const dishIds = dishIdResult.data;
+    var dishIdList = new Array();
+    for (var i = 0; i < dishIds.length; i++) {
+      console.log('dishId' + i + dishIds[i].dishId);
+      dishIdList[i] = dishIds[i].dishId;
+    }
+
+    // 查询食材关联菜单
+    if (dishIds != null && dishIds != '') {
+      const dishesResult = await db.collection('dish').where({
+        _id: _.in(dishIdList)
+      }).get();
+
+      // 菜单
+      const dishes = dishesResult.data;
+      for (var i = 0; i < dishes.length; i++) {
+        const date = new Date(dishes[i].lastDate);
+        retList[i] = {
+          id: dishes[i]._id,
+          name: dishes[i].name,
+          category: dishes[i].category,
+          lastDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+        };
+      }
+    }
+  }
+  console.log('listDishes  end ----------------');
+  return {
+    code: 200,
+    message: 'OK',
+    data: retList
+  }
+}
