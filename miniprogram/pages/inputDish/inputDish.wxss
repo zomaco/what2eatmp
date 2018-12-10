@@ -1,4 +1,5 @@
 /* miniprogram/pages/inputDish/inputDish.wxss */
+
 input, textarea {
   border: 1rpx solid green;
   width: inherit;

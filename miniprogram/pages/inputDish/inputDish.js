@@ -109,11 +109,6 @@ Page({
       })
       return;
     }
-    console.log(
-      this.data.dishName + '||' +
-      this.data.ingredientName + '||' +
-      this.data.array[this.data.index] + '||' +
-      this.data.howToCook);
     wx.cloud.callFunction({
       name: 'iCanMake',
       data: {
@@ -123,7 +118,6 @@ Page({
         howToCook: this.data.howToCook
       },
       success: res => {
-        console.log(res.result);
         if (res.result.code == 200) {
           wx.showToast({
             title: 'OK',

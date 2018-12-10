@@ -11,8 +11,8 @@
   <view>
     <view>常见级别</view>
     <picker bindchange="bindPickerChange" value='{{index}}' range="{{array}}">
-    <view class='picker'>{{array[index]}}</view>
-  </picker>
+      <view class='picker'>{{array[index]}}</view>
+    </picker>
   </view>
   <view>
     <view>做法</view>

@@ -12,12 +12,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('showIngredients start----------------');
     wx.cloud.callFunction({
       name: 'listMyIngredients',
       data: {},
       success: res => {
-        console.log(res.result);
         this.setData({
           list: res.result.data
         });
@@ -81,6 +79,43 @@ Page({
   },
 
   /**
+   * 删除食材
+   */
+  ingredientDelete: function(e) {
+    var id = e.currentTarget.dataset.id;
+    wx.cloud.callFunction({
+      name: 'ingredientDelete',
+      data: {
+        id: id
+      },
+      success: res => {
+        if (res.result.code == 200) {
+          wx.showToast({
+            title: 'OK',
+            duration: 3000,
+            complete: () => {
+              wx.redirectTo({
+                url: '../showIngredients/showIngredients'
+              });
+            }
+          });
+        } else {
+          wx.showToast({
+            title: res.result.message,
+            icon: 'none'
+          })
+        }
+      },
+      fail: err => {
+        wx.showToast({
+          title: '调用失败',
+          icon: 'none'
+        })
+      }
+    });
+  },
+
+  /**
    * 食材
    */
   getDishes: function(e) {
@@ -89,7 +124,7 @@ Page({
       title: 'OK',
       duration: 3000,
       complete: () => {
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../showDishes/showDishes?ingredientId=' + ingredientId
         });
       }

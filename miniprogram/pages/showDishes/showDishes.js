@@ -11,9 +11,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var ingredientId = options.ingredientId;
-    console.log("ingredientId:" + ingredientId);
     if (ingredientId != null && ingredientId != '') {
       this.getDishesByIngredientId(ingredientId);
     } else {
@@ -21,7 +20,6 @@ Page({
         name: 'listMyDishes',
         data: {},
         success: res => {
-          console.log(res.result);
           this.setData({
             list: res.result.data
           });
@@ -33,7 +31,6 @@ Page({
         }
       });
     }
-    console.log(this.data);
   },
 
   /**
@@ -110,7 +107,7 @@ Page({
     });
   },
 
-  iMadeBtn: function (e) {
+  iMadeBtn: function(e) {
     wx.cloud.callFunction({
       name: 'iMade',
       data: {
@@ -138,14 +135,13 @@ Page({
   /**
    * 食材
    */
-  getDishesByIngredientId: function (ingredientId) {
+  getDishesByIngredientId: function(ingredientId) {
     wx.cloud.callFunction({
       name: 'listDishes',
       data: {
         id: ingredientId
       },
       success: res => {
-        console.log(res.result);
         this.setData({
           list: res.result.data
         });

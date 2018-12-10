@@ -172,7 +172,7 @@ Page({
     });
   },
 
-  bindInputHowToCook: function (e) {
+  bindInputHowToCook: function(e) {
     this.setData({
       howToCook: e.detail.value
     })

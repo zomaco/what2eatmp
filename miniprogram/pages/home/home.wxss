@@ -4,12 +4,12 @@ page {
   background: #f6f6f6;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   width: 100%;
   height: 80%;
 }
 
-.uploader{
+.uploader {
   margin-top: 40rpx;
   background: red;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -19,45 +19,33 @@ page {
   transition: all 300ms ease;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   width: 100%;
   height: 70%;
 }
 
-.uploader-text{
+.uploader-text {
   line-height: 52px;
   font-size: 34rpx;
   color: #0059ff;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   width: 100%;
   height: 70%;
 }
 
-
-
-.animation-box{
-
-    width: 176px;
-
-    height:176px;
-
+.animation-box {
+  width: 176px;
+  height: 176px;
 }
 
 .time-crl-path {
-
-    width: 176px;
-
-    height: 176px;
-
+  width: 176px;
+  height: 176px;
 }
 
- 
-
 .crl-dot {
-
-    width: 9px;
-
-    height:9px;
+  width: 9px;
+  height: 9px;
 }
