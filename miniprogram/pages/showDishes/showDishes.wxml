@@ -1,5 +1,14 @@
 <!--pages/showDishes/showDishes.wxml-->
 <view>
+  <view>
+    <checkbox-group bindchange='checkboxChange'>
+      <label class='checkbox' wx:for='{{array}}' wx:key='name'>
+        <checkbox value='{{item}}' />{{item}}
+      </label>
+    </checkbox-group>
+    <input bindinput='bindInputKey' value='{{searchKey}}' placeholder='输入菜或食材名'></input>
+    <button bindtap='onLoad'>搜</button>
+  </view>
   <scroll-view scroll-y>
     <view wx:for='{{list}}' wx:key='name' class='listItem'>
       <view>名称：{{item.name}}</view>

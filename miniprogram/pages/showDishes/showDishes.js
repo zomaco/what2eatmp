@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    array: ['十分常见', '一般常见', '较不常见', '极不常见'],
+    checkedValue: [],
+    searchKey: '',
     list: []
   },
 
@@ -18,7 +21,10 @@ Page({
     } else {
       wx.cloud.callFunction({
         name: 'listMyDishes',
-        data: {},
+        data: {
+          categories: this.data.checkedValue,
+          keyword: this.data.searchKey
+        },
         success: res => {
           this.setData({
             list: res.result.data
@@ -151,6 +157,19 @@ Page({
           title: 'fail'
         })
       }
+    });
+  },
+
+  checkboxChange: function(e) {
+    this.setData({
+      checkedValue: e.detail.value
+    });
+    this.onLoad(e.target.dataset);
+  },
+
+  bindInputKey: function(e) {
+    this.setData({
+      searchKey: e.detail.value
     });
   }
 })
