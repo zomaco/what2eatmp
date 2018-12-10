@@ -1,75 +1,45 @@
 <!--index.wxml-->
-<view class="container">
+<view>
 
-  <!-- 用户 openid -->
-  <!-- <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-    ></button>
-    <view>
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+  <view class="functions">
+    <view class='function_row'>
+      <view class="function_cell">
+        <navigator url="../inputDish/inputDish" open-type="navigate">
+          <image mode='aspectFit' src='{{func1Url}}' class='icon'></image>
+        </navigator>
+        <navigator url="../inputDish/inputDish" open-type="navigate" class='icon_text'>
+          <text>输入我会做的菜</text>
+        </navigator>
+      </view>
+      <view class="function_cell">
+        <navigator url="../showDishes/showDishes" open-type="navigate">
+          <image mode='aspectFit' src='{{func2Url}}' class='icon'></image>
+        </navigator>
+        <navigator url="../showDishes/showDishes" open-type="navigate" class='icon_text'>
+          <text>列出所有菜</text>
+        </navigator>
+      </view>
     </view>
-  </view> -->
-
-
-  <!-- 上传图片 -->
-  <!-- <view class="uploader">
-    <view class="uploader-text" bindtap="doUpload">
-      <text>上传图片</text>
+    <view class='function_row'>
+      <view class="function_cell">
+        <navigator url="../showDishes/showDishes" open-type="navigate">
+          <image mode='aspectFit' src='{{func3Url}}' class='icon'></image>
+        </navigator>
+        <navigator url="../showIngredients/showIngredients" open-type="navigate" class='icon_text'>
+          <text>列出所有食材</text>
+        </navigator>
+      </view>
+      <view class="function_cell">
+        <navigator url="../showDishes/showDishes" open-type="navigate">
+          <image mode='aspectFit' src='{{func4Url}}' class='icon'></image>
+        </navigator>
+        <navigator url="../what2eat/what2eat" open-type="navigate" class='icon_text'>
+          <text>吃点啥？</text>
+        </navigator>
+      </view>
     </view>
-    <view class="uploader-container" wx:if="{{imgUrl}}">
-      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
-    </view>
-  </view> -->
-
-
-  <!-- 操作数据库 -->
-  <!-- <view class="uploader">
-    <navigator url="../databaseGuide/databaseGuide" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
-    </navigator>
-  </view> -->
-
-
-  <!-- 新建云函数 -->
-  <!-- <view class="uploader">
-    <navigator url="../addFunction/addFunction" open-type="navigate" class="uploader-text">
-      <text>快速新建云函数</text>
-    </navigator>
-  </view> -->
-
-
-  <!-- 输入我会做的菜 -->
-  <view class="uploader">
-    <navigator url="../inputDish/inputDish" open-type="navigate" class="uploader-text">
-      <text>输入我会做的菜</text>
-    </navigator>
   </view>
 
-  <!-- 列出所有菜 -->
-  <view class="uploader">
-    <navigator url="../showDishes/showDishes" open-type="navigate" class="uploader-text">
-      <text>列出所有菜</text>
-    </navigator>
-  </view>
-
-  <!-- 列出所有食材 -->
-  <view class="uploader">
-    <navigator url="../showIngredients/showIngredients" open-type="navigate" class="uploader-text">
-      <text>列出所有食材</text>
-    </navigator>
-  </view>
-
-  <!-- 吃点啥 -->
-  <view class="uploader">
-    <navigator url="../what2eat/what2eat" open-type="navigate" class="uploader-text">
-      <text>吃点啥？</text>
-    </navigator>
-  </view>
-
-  <image class='sizeModal-img' mode='scaleToFill' src='{{timgUrl}}'></image>
+  <image mode='widthFix' src='{{timgUrl}}'></image>
 
 </view>

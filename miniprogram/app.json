@@ -6,12 +6,6 @@
     "pages/inputDish/inputDish",
     "pages/dishDetail/dishDetail",
     "pages/showIngredients/showIngredients",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
     "pages/what2eat/what2eat"
   ],
   "window": {
