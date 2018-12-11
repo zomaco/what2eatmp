@@ -22,7 +22,7 @@
     </view>
     <view class='function_row'>
       <view class="function_cell">
-        <navigator url="../showDishes/showDishes" open-type="navigate">
+        <navigator url="../showIngredients/showIngredients" open-type="navigate">
           <image mode='aspectFit' src='{{func3Url}}' class='icon'></image>
         </navigator>
         <navigator url="../showIngredients/showIngredients" open-type="navigate" class='icon_text'>
@@ -30,7 +30,7 @@
         </navigator>
       </view>
       <view class="function_cell">
-        <navigator url="../showDishes/showDishes" open-type="navigate">
+        <navigator url="../what2eat/what2eat" open-type="navigate">
           <image mode='aspectFit' src='{{func4Url}}' class='icon'></image>
         </navigator>
         <navigator url="../what2eat/what2eat" open-type="navigate" class='icon_text'>

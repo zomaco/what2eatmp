@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    searchBtnUrl: './search.png',
     array: ['十分常见', '一般常见', '较不常见', '极不常见'],
     checkedValue: [],
     searchKey: '',

@@ -1,12 +1,12 @@
 <!--miniprogram/pages/inputDish/inputDish.wxml-->
 <form>
   <view>
-    <view>菜名</view>
-    <input bindinput='bindInputDishName' value='{{dishName}}'></input>
+    <view>菜名*</view>
+    <input bindinput='bindInputDishName' value='{{dishName}}' placeholder='输入菜的名称'></input>
   </view>
   <view>
-    <view>食材</view>
-    <input bindinput='bindInputIngredientName' value='{{ingredientName}}'></input>
+    <view>食材*</view>
+    <input bindinput='bindInputIngredientName' value='{{ingredientName}}' placeholder='输入所需食材（逗号分隔）'></input>
   </view>
   <view>
     <view>常见级别</view>
@@ -16,7 +16,7 @@
   </view>
   <view>
     <view>做法</view>
-    <textarea bindinput='bindInputHowToCook' value='{{howToCook}}'></textarea>
+    <textarea bindinput='bindInputHowToCook' value='{{howToCook}}' placeholder='输入做法或备注'></textarea>
   </view>
   <view>
     <button form-type='submit' bindtap='newDish' type='primary'>新增</button>

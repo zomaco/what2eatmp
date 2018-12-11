@@ -3,6 +3,8 @@
 .buttonRow {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
 }
 
 .buttonLike {
@@ -21,4 +23,23 @@
   border: 1rpx solid green;
   padding: 10rpx;
   margin-bottom: 10rpx;
+}
+
+.search {
+  border: 1rpx solid black;
+  border-radius: 12rpx;
+}
+
+.search_input {
+  width: 90%;
+  padding: 10rpx;
+}
+
+.search_icon {
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.checkbox {
+  font-size: 30rpx;
 }
