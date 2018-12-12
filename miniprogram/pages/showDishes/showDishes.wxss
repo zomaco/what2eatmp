@@ -9,13 +9,19 @@
 
 .buttonLike {
   border: 1rpx solid green;
-  border-radius: 10rpx;
+  border-radius: 12rpx;
   padding: 10rpx;
   margin: 5rpx;
 }
 
 .primaryButton {
   background-color: green;
+  color: white;
+}
+
+.buttonDelete {
+  border: 1rpx solid red;
+  background-color: red;
   color: white;
 }
 
@@ -31,7 +37,8 @@
 }
 
 .search_input {
-  width: 90%;
+  /* border: 1rpx solid black; */
+  width: 100%;
   padding: 10rpx;
 }
 

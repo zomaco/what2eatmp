@@ -23,7 +23,7 @@
             <text>查看</text>
           </navigator>
         </view>
-        <view class='buttonLike' data-id='{{item.id}}' bindtap='dishDeleteBtn'>删除</view>
+        <view class='buttonLike buttonDelete' data-id='{{item.id}}' bindtap='dishDeleteBtn'>删除</view>
       </view>
     </view>
   </scroll-view>

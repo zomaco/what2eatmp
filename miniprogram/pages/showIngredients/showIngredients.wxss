@@ -1,9 +1,7 @@
-.bg-w {
-  background: snow;
-}
+/* pages/showIngredients/showIngredients.wxss */
 
-.bg-g {
-  background: #e6f3f9;
+.checkbox {
+  font-size: 30rpx;
 }
 
 .buttonRow {
@@ -11,23 +9,26 @@
   flex-direction: row;
 }
 
-.buttonDelete {
+.buttonLike {
   border: 1rpx solid green;
-  border-radius: 10rpx;
+  border-radius: 12rpx;
   padding: 10rpx;
   margin: 5rpx;
-  background-color: #eee;
+}
+
+.primaryButton {
+  background-color: green;
+  color: white;
+}
+
+.buttonDelete {
+  border: 1rpx solid red;
+  background-color: red;
+  color: white;
 }
 
 .listItem {
   border: 1rpx solid green;
   padding: 10rpx;
   margin-bottom: 10rpx;
-}
-
-.buttonLike {
-  border: 1rpx solid green;
-  border-radius: 10rpx;
-  padding: 10rpx;
-  margin: 5rpx;
 }

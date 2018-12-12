@@ -5,9 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    unbindBtnUrl: './delete.png',
+    addBtnUrl: './add.png',
     dishData: null,
     bindRecipeName: '',
-    howToCook: ''
+    howToCook: '',
+    ingredientInputHide: true
   },
 
   /**
@@ -177,4 +180,10 @@ Page({
       howToCook: e.detail.value
     })
   },
+
+  bindIngredientInputShow: function(e) {
+    this.setData({
+      ingredientInputHide: !this.data.ingredientInputHide
+    });
+  }
 })

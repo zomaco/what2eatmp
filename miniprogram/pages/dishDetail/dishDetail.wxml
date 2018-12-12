@@ -1,22 +1,18 @@
 <!--miniprogram/pages/dishDetail/dishDetail.wxml-->
-<view>{{dishData.dishName}}</view>
 <view>
-  <view class='tableHeader'>
-    <view class='column1'>所需食材</view>
-    <view class='column2'>剩余数量</view>
-    <view class='column3'>操作</view>
-  </view>
-  <view class='tableRow' wx:for='{{dishData.ingredients}}' wx:key='id'>
-    <view class='column1'>{{item.name}}</view>
-    <view class='column2'>{{item.quantity}}</view>
-    <view class='column3'>
-      <button bindtap='unbindRecipeBtn' data-dish-id='{{dishData.dishId}}' data-ingredient-id='{{item.id}}'>移除</button>
+  <view>名称：{{dishData.dishName}}</view>
+  <view>所需食材：</view>
+  <view class='tableRow'>
+    <view class='"item " + {{item.quantity > 0 ? "item_stock":"item_out_of_stock"}}' wx:for='{{dishData.ingredients}}' wx:key='id'>
+      <view class='item_name'>{{item.name}}</view>
+      <image mode='aspectFit' src='{{unbindBtnUrl}}' bindtap='unbindRecipeBtn' data-dish-id='{{dishData.dishId}}' data-ingredient-id='{{item.id}}' class='unbind_icon'></image>
     </view>
+    <image mode='aspectFit' src='{{addBtnUrl}}' class='unbind_icon item' bindtap='bindIngredientInputShow'></image>
   </view>
+  <view class='tableRow' hidden='{{ingredientInputHide}}'>
+    <input placeholder='添加食材' class='bindRecipeInput' value='{{bindRecipeName}}' bindinput='bindInputBindRecipeName'></input>
+    <button bindtap='bindRecipeBtn' data-dish-id='{{dishData.dishId}}'>添加</button>
+  </view>
+  <textarea bindinput='bindInputHowToCook' value='{{dishData.howToCook}}'></textarea>
+  <button bindtap='updateHowToCookBtn' data-dish-id='{{dishData.dishId}}'>更新</button>
 </view>
-<view class='tableRow'>
-  <input placeholder='添加食材' class='bindRecipeInput' value='{{bindRecipeName}}' bindinput='bindInputBindRecipeName'></input>
-  <button bindtap='bindRecipeBtn' data-dish-id='{{dishData.dishId}}'>添加</button>
-</view>
-<textarea bindinput='bindInputHowToCook' value='{{dishData.howToCook}}'></textarea>
-<button bindtap='updateHowToCookBtn' data-dish-id='{{dishData.dishId}}'>更新</button>

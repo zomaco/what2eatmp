@@ -2,8 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/index/index",
-    "pages/showDishes/showDishes",
     "pages/inputDish/inputDish",
+    "pages/showDishes/showDishes",
     "pages/dishDetail/dishDetail",
     "pages/showIngredients/showIngredients",
     "pages/what2eat/what2eat"

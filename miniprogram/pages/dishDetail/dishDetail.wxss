@@ -1,29 +1,49 @@
 /* miniprogram/pages/dishDetail/dishDetail.wxss */
 
-.tableHeader {
-  display: flex;
-  flex-direction: row;
-  background: green;
-  color: white;
-  padding: 10rpx;
-}
-
-.tableRow {
-  display: flex;
-  flex-direction: row;
-  padding: 10rpx;
-  /* border-bottom: 1rpx solid green; */
-}
-
-.column1, .column2 {
-  margin-left: 20rpx;
-  min-width: 200rpx;
-}
-
-.column3 {
-  margin-left: 20rpx;
-}
-
-.bindRecipeInput {
+input, textarea {
   border: 1rpx solid green;
+  border-radius: 12rpx;
+  width: inherit;
+  padding: 10rpx;
+}
+
+view {
+  padding: 10rpx;
+}
+
+.tableRow, .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.item {
+  width: 20%;
+  margin: 0rpx 0rpx 0rpx 10rpx;
+}
+
+.item_name {
+  width: 100%;
+  font-size: 30rpx;
+  padding: 10rpx;
+}
+
+.unbind_icon {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.item_stock {
+  border: 1rpx solid green;
+  border-radius: 12rpx;
+  background-color: green;
+  color: white;
+}
+
+.item_out_of_stock {
+  border: 1rpx solid red;
+  border-radius: 12rpx;
+  background-color: red;
+  color: white;
 }

@@ -17,8 +17,9 @@ Page({
    */
   onLoad: function(options) {
     var ingredientId = options.ingredientId;
+    const ingredientName = options.ingredientName;
     if (ingredientId != null && ingredientId != '') {
-      this.getDishesByIngredientId(ingredientId);
+      this.getDishesByIngredientId(ingredientId, ingredientName);
     } else {
       wx.cloud.callFunction({
         name: 'listMyDishes',
@@ -142,7 +143,7 @@ Page({
   /**
    * 食材
    */
-  getDishesByIngredientId: function(ingredientId) {
+  getDishesByIngredientId: function (ingredientId, ingredientName) {
     wx.cloud.callFunction({
       name: 'listDishes',
       data: {
@@ -150,7 +151,8 @@ Page({
       },
       success: res => {
         this.setData({
-          list: res.result.data
+          list: res.result.data,
+          searchKey: ingredientName
         });
       },
       fail: err => {

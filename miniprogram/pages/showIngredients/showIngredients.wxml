@@ -9,26 +9,24 @@
   </view>
   <scroll-view scroll-y>
     <view wx:for='{{list}}' wx:key='name' class='listItem'>
-      <view class="tr bg-g">
-        <view>名称：{{item.name}}</view>
-        <block wx:if='{{item.quantity == 0}}'>
-          <view>无存货</view>
-        </block>
-        <block wx:else>
-          <view>有存货</view>
-        </block>
-        <view class='buttonRow'>
-          <view class='buttonLike' data-id='{{item.id}}' bindtap='getDishes'>查看</view>
-          <view class='buttonDelete' data-id='{{item.id}}' type="default" bindtap='ingredientDelete'>删除</view>
-          <view class='buttonLike' data-id='{{item.id}}' type="default" bindtap='ingredientUpdate'>
-            <block wx:if='{{item.quantity == 0}}'>
-              <text>进货啦</text>
-            </block>
-            <block wx:else>
-              <text>吃完啦</text>
-            </block>
-          </view>
+      <view>名称：{{item.name}}</view>
+      <block wx:if='{{item.quantity == 0}}'>
+        <view>无存货</view>
+      </block>
+      <block wx:else>
+        <view>有存货</view>
+      </block>
+      <view class='buttonRow'>
+        <view class='buttonLike primaryButton' data-id='{{item.id}}' bindtap='ingredientUpdate'>
+          <block wx:if='{{item.quantity == 0}}'>
+            <text>进货啦</text>
+          </block>
+          <block wx:else>
+            <text>吃完啦</text>
+          </block>
         </view>
+        <view class='buttonLike' data-id='{{item.id}}' data-name='{{item.name}}' bindtap='getDishes'>查看</view>
+        <view class='buttonLike buttonDelete' data-id='{{item.id}}' bindtap='ingredientDelete'>删除</view>
       </view>
     </view>
   </scroll-view>

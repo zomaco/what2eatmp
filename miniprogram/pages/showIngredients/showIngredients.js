@@ -165,8 +165,9 @@ Page({
    */
   getDishes: function(e) {
     var ingredientId = e.currentTarget.dataset.id;
+    const name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../showDishes/showDishes?ingredientId=' + ingredientId
+      url: '../showDishes/showDishes?ingredientId=' + ingredientId + '&ingredientName=' + name
     });
   },
 
