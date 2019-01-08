@@ -8,9 +8,9 @@
       <view class='dish_name'>名称：{{item.dishName}}</view>
       <view class='buttonLike' data-id='{{item.dishId}}' bindtap='iMadeBtn'>做这个！</view>
     </view>
+    <button bindtap='roll' type='primary' class='rollBtn'>换一换</button>
   </view>
   <view wx:else hidden="{{!loading}}">
-    <image mode='widthFix' src='{{nochiUrl}}'></image>
+    <image mode='widthFix' class='icon'  src='{{nochiUrl}}'></image>
   </view>
 </view>
-<button bindtap='roll' type='primary' class='rollBtn'>换一换</button>
