@@ -9,7 +9,7 @@ Page({
     categories: '',
     list: [],
     nochiUrl: './no.jpg',
-    loading:false
+    loading: false
   },
 
   /**
@@ -25,11 +25,11 @@ Page({
       },
       success: res => {
         getApp().hideLoading(),
-        this.setData({
-          callTimes: this.data.callTimes + 1,
-          list: res.result.data,
-          loading: true
-        });
+          this.setData({
+            callTimes: this.data.callTimes + 1,
+            list: res.result.data,
+            loading: true
+          });
       },
       fail: err => {
         getApp().hideLoading(),
@@ -118,9 +118,9 @@ Page({
       },
       fail: err => {
         getApp().hideLoading(),
-        wx.showToast({
-          title: 'fail'
-        })
+          wx.showToast({
+            title: 'fail'
+          })
       }
     });
   }
