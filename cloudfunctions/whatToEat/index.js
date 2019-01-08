@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 // 云函数入口函数
-exports.main = async(event, context) => {
+exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const db = cloud.database();
   const _ = db.command;
@@ -12,29 +12,25 @@ exports.main = async(event, context) => {
   console.log(event.callTimes);
   console.log(event.categories);
   console.log(event.openid);
-  console.log(event.others);
   console.log('parameter  end ----------------');
   const IGNORE_DAYS = 2;
 
-  // 所有关联用户
+  // 所有关联用户-jcm start
   var openIds = new Array();
-  if (event.others = false) {
-    const openIdRes = await cloud.callFunction({
-      name: 'getOpenIds',
-      data: {
-        openid: event.openid
-      }
-    })
-    openIds = openIdRes.result.openIds;
-  } else {
-    openIds[0] = event.openid;
-  }
+  const openIdRes = await cloud.callFunction({
+    name: 'getOpenIds',
+    data: {
+      openid: event.openid
+    }
+  })
+  openIds = openIdRes.result.openIds;
   console.log(openIds)
+  // 所有关联用户-jcm end
 
   // 1、食材信息
   const ingredientsStockResult = await db.collection('ingredient').where({
     quantity: _.neq(0),
-    openid: _.in(openIds)
+    openid: event.openid
   }).get();
 
   const ingredientsStock = ingredientsStockResult.data;
