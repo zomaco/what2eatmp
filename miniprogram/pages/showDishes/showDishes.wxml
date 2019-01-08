@@ -19,11 +19,13 @@
       <view class='buttonRow'>
         <view class='buttonLike primaryButton' data-id='{{item.id}}' bindtap='iMadeBtn'>做这个！</view>
         <view class='buttonLike' data-id='{{item.id}}'>
-          <navigator url="../dishDetail/dishDetail?dishId={{item.id}}" open-type="navigate">
+          <navigator url="../dishDetail/dishDetail?dishId={{item.id}}&openid={{item.openid}}" open-type="navigate">
             <text>查看</text>
           </navigator>
         </view>
-        <view class='buttonLike buttonDelete' data-id='{{item.id}}' bindtap='dishDeleteBtn'>删除</view>
+        <view wx:if="{{ownerId==item.openid}}">
+          <view class='buttonLike buttonDelete' data-id='{{item.id}}' bindtap='dishDeleteBtn'>删除</view>
+        </view>
       </view>
     </view>
   </scroll-view>

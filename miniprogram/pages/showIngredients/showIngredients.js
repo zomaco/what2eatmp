@@ -21,7 +21,8 @@ Page({
     wx.cloud.callFunction({
       name: 'listMyIngredients',
       data: {
-        stockOnly: stockOnly
+        stockOnly: stockOnly,
+        openid: getApp().globalData.openid
       },
       success: res => {
         this.setData({
@@ -131,7 +132,8 @@ Page({
     wx.cloud.callFunction({
       name: 'ingredientUpdate',
       data: {
-        id: id
+        id: id,
+        openid: getApp().globalData.openid
       },
       success: res => {
         if (res.result.code == 200) {

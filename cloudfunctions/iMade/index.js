@@ -12,7 +12,8 @@ exports.main = async(event, context) => {
   console.log('parameter  end ----------------');
 
   const updateResult = await db.collection('dish').where({
-    _id: event.dishId
+    _id: event.dishId,
+    openid: event.openid
   }).update({
     data: {
       lastDate: new Date().getTime()

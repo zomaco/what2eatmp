@@ -7,7 +7,9 @@ Page({
   data: {
     callTimes: 0,
     categories: '',
-    list: []
+    list: [],
+    nochiUrl: './no.jpg',
+    loading:false
   },
 
   /**
@@ -18,15 +20,22 @@ Page({
       name: 'whatToEat',
       data: {
         callTimes: this.data.callTimes,
-        categories: this.data.categories
+        categories: this.data.categories,
+        openid: getApp().globalData.openid
       },
       success: res => {
+        getApp().hideLoading(),
         this.setData({
           callTimes: this.data.callTimes + 1,
-          list: res.result.data
+          list: res.result.data,
+          loading: true
         });
       },
       fail: err => {
+        getApp().hideLoading(),
+          this.setData({
+            loading: true
+          });
         wx.showToast({
           title: 'fail'
         })
@@ -88,10 +97,13 @@ Page({
   },
 
   iMadeBtn: function(e) {
+    getApp().showLoading('加载中...', '');
+    var dishId = e.target.dataset.id;
     wx.cloud.callFunction({
       name: 'iMade',
       data: {
-        dishId: e.target.dataset.id
+        dishId: dishId,
+        openid: getApp().globalData.openid
       },
       success: res => {
         wx.showToast({
@@ -99,12 +111,13 @@ Page({
           duration: 3000,
           complete: () => {
             wx.redirectTo({
-              url: '../showDishes/showDishes'
+              url: '../dishDetail/dishDetail?dishId=' + dishId + '&openid=' + getApp().globalData.openid
             });
           }
         });
       },
       fail: err => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'fail'
         })

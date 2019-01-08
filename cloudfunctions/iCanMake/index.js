@@ -10,6 +10,7 @@ exports.main = async(event, context) => {
   console.log(event.dishCategory);
   console.log(event.ingredientNames);
   console.log(event.howToCook);
+  console.log(event.openid);
   console.log('parameter  end ----------------');
 
   const db = cloud.database();
@@ -31,6 +32,7 @@ exports.main = async(event, context) => {
   console.log('ingredients:', ingredients)
   var idFromNames = new Array();
   var cnt = 0;
+  var openid = event.openid;
   const ingredientNames = event.ingredientNames.split(',');
   console.log('ingredientNames:', ingredientNames)
   for (var i = 0; i < ingredientNames.length; i++) {
@@ -47,7 +49,8 @@ exports.main = async(event, context) => {
       const addResult = await db.collection('ingredient').add({
         data: {
           name: ingredientNames[i],
-          quantity: 0
+          quantity: 0,
+          openid: openid
         }
       });
       idFromNames[cnt++] = addResult._id;
@@ -62,7 +65,8 @@ exports.main = async(event, context) => {
       name: event.dishName,
       category: event.dishCategory,
       lastDate: 0,
-      howToCook: event.howToCook
+      howToCook: event.howToCook,
+      openid: openid
     }
   });
   console.log('[dish] [新增记录] 成功，记录 _id: ', addResult2._id)
@@ -71,7 +75,8 @@ exports.main = async(event, context) => {
     const addResult3 = await db.collection('recipe').add({
       data: {
         dishId: addResult2._id,
-        ingredientId: idFromNames[i]
+        ingredientId: idFromNames[i],
+        openid: openid
       }
     });
     console.log('[recipe] [新增记录] 成功，记录 _id: ', addResult3._id)

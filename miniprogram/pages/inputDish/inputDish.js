@@ -115,7 +115,8 @@ Page({
         dishName: this.data.dishName,
         dishCategory: this.data.array[this.data.index],
         ingredientNames: this.data.ingredientName,
-        howToCook: this.data.howToCook
+        howToCook: this.data.howToCook,
+        openid: getApp().globalData.openid
       },
       success: res => {
         if (res.result.code == 200) {

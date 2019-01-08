@@ -11,15 +11,42 @@ exports.main = async(event, context) => {
   console.log('parameter start----------------');
   console.log(event.callTimes);
   console.log(event.categories);
+  console.log(event.openid);
+  console.log(event.others);
   console.log('parameter  end ----------------');
   const IGNORE_DAYS = 2;
 
+  // 所有关联用户
+  var openIds = new Array();
+  if (event.others = false) {
+    const openIdRes = await cloud.callFunction({
+      name: 'getOpenIds',
+      data: {
+        openid: event.openid
+      }
+    })
+    openIds = openIdRes.result.openIds;
+  } else {
+    openIds[0] = event.openid;
+  }
+  console.log(openIds)
+
+  // 1、食材信息
   const ingredientsStockResult = await db.collection('ingredient').where({
-    quantity: _.neq(0)
+    quantity: _.neq(0),
+    openid: _.in(openIds)
   }).get();
+
   const ingredientsStock = ingredientsStockResult.data;
 
-  const recipesResult = await db.collection('recipe').get();
+  // 2、关联的菜谱信息
+  var ingredientIds = new Array();
+  for (var i = 0; i < ingredientsStock.length; i++) {
+    ingredientIds[i] = ingredientsStock[i]._id;
+  }
+  const recipesResult = await db.collection('recipe').where({
+    ingredientId: _.in(ingredientIds)
+  }).get();
   const recipes = recipesResult.data;
 
   // 排除N（可配置）天以前做过的菜
@@ -30,12 +57,14 @@ exports.main = async(event, context) => {
   var dishesFilteredTempResult;
   if (event.categories.replace(/,/g, '') == '') {
     dishesFilteredTempResult = await db.collection('dish').where({
-      lastDate: _.lt(dateRestriction)
+      lastDate: _.lt(dateRestriction),
+      openid: _.in(openIds)
     }).orderBy('lastDate', 'asc').get();
   } else {
     dishesFilteredTempResult = await db.collection('dish').where({
       lastDate: _.lt(dateRestriction),
-      category: _.in(event.categories.split(','))
+      category: _.in(event.categories.split(',')),
+      openid: _.in(openIds)
     }).orderBy('lastDate', 'asc').get();
   }
   const dishesFilteredTemp = dishesFilteredTempResult.data;

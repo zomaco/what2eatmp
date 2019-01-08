@@ -10,24 +10,39 @@ Page({
     dishData: null,
     bindRecipeName: '',
     howToCook: '',
-    ingredientInputHide: true
+    ingredientInputHide: true,
+    ownerId:"",
+    openid:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    getApp().showLoading('加载中...', '');
+    var openid = options.openid;
+    var ownerId = getApp().globalData.openid;
+    this.setData({
+      ownerId: ownerId,
+      openid: openid
+    });
+    console.log('ownerId:' + this.data.ownerId)
+    console.log('openid:' + this.data.openid)
     wx.cloud.callFunction({
       name: 'dishDetail',
       data: {
-        dishId: options.dishId
+        dishId: options.dishId,
+        openid: ownerId,
+        openidOthers: openid
       },
       success: res => {
+        getApp().hideLoading(),
         this.setData({
           dishData: res.result.data
         });
       },
       fail: err => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'fail'
         })
@@ -85,6 +100,7 @@ Page({
   },
 
   unbindRecipeBtn: function(e) {
+    getApp().showLoading('删除食材中...', '');
     wx.cloud.callFunction({
       name: 'unbindRecipe',
       data: {
@@ -92,17 +108,19 @@ Page({
         ingredientId: e.target.dataset.ingredientId
       },
       success: res => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'OK',
           duration: 3000,
           complete: () => {
             wx.redirectTo({
-              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId + '&openid=' + this.data.openid
             });
           }
         });
       },
       fail: err => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'fail'
         })
@@ -118,6 +136,7 @@ Page({
       })
       return;
     }
+    getApp().showLoading('添加食材中...', '');
     wx.cloud.callFunction({
       name: 'bindRecipe',
       data: {
@@ -125,17 +144,19 @@ Page({
         ingredientName: this.data.bindRecipeName
       },
       success: res => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'OK',
           duration: 3000,
           complete: () => {
             wx.redirectTo({
-              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId + '&openid=' + this.data.openid
             });
           }
         });
       },
       fail: err => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'fail'
         })
@@ -150,6 +171,7 @@ Page({
   },
 
   updateHowToCookBtn: function(e) {
+    getApp().showLoading('更新中...', '');
     wx.cloud.callFunction({
       name: 'dishUpdate',
       data: {
@@ -157,17 +179,19 @@ Page({
         howToCook: this.data.howToCook
       },
       success: res => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'OK',
-          duration: 3000,
+          duration: 2000,
           complete: () => {
             wx.redirectTo({
-              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId
+              url: '../dishDetail/dishDetail?dishId=' + e.target.dataset.dishId + '&openid=' + this.data.openid
             });
           }
         });
       },
       fail: err => {
+        getApp().hideLoading(),
         wx.showToast({
           title: 'fail'
         })

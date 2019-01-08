@@ -9,15 +9,21 @@ Page({
     array: ['十分常见', '一般常见', '较不常见', '极不常见'],
     checkedValue: [],
     searchKey: '',
-    list: []
+    list: [],
+    ownerId: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    getApp().showLoading('加载中...','');
     var ingredientId = options.ingredientId;
     const ingredientName = options.ingredientName;
+    var openid = getApp().globalData.openid;
+    this.setData({
+      ownerId: openid
+    });
     if (ingredientId != null && ingredientId != '') {
       this.getDishesByIngredientId(ingredientId, ingredientName);
     } else {
@@ -25,14 +31,17 @@ Page({
         name: 'listMyDishes',
         data: {
           categories: this.data.checkedValue,
-          keyword: this.data.searchKey
+          keyword: this.data.searchKey,
+          openid: getApp().globalData.openid
         },
         success: res => {
+          getApp().hideLoading(),
           this.setData({
             list: res.result.data
           });
         },
         fail: err => {
+          getApp().hideLoading(),
           wx.showToast({
             title: 'fail'
           })
@@ -91,12 +100,15 @@ Page({
   },
 
   dishDeleteBtn: function(e) {
+    getApp().showLoading('删除中...', '');
     wx.cloud.callFunction({
       name: 'dishDelete',
       data: {
-        dishId: e.target.dataset.id
+        dishId: e.target.dataset.id,
+        openid: getApp().globalData.openid
       },
       success: res => {
+        getApp().hideLoading();
         wx.showToast({
           title: 'OK',
           duration: 3000,
@@ -108,6 +120,7 @@ Page({
         });
       },
       fail: err => {
+        getApp().hideLoading();
         wx.showToast({
           title: 'fail'
         })
@@ -116,12 +129,15 @@ Page({
   },
 
   iMadeBtn: function(e) {
+    getApp().showLoading('加载中...', '');
     wx.cloud.callFunction({
       name: 'iMade',
       data: {
-        dishId: e.target.dataset.id
+        dishId: e.target.dataset.id,
+        openid: getApp().globalData.openid
       },
       success: res => {
+        getApp().hideLoading();
         wx.showToast({
           title: 'OK',
           duration: 3000,
@@ -133,6 +149,7 @@ Page({
         });
       },
       fail: err => {
+        getApp().hideLoading();
         wx.showToast({
           title: 'fail'
         })
@@ -147,15 +164,18 @@ Page({
     wx.cloud.callFunction({
       name: 'listDishes',
       data: {
-        id: ingredientId
+        id: ingredientId,
+        openid: getApp().globalData.openid
       },
       success: res => {
+        getApp().hideLoading();
         this.setData({
           list: res.result.data,
           searchKey: ingredientName
         });
       },
       fail: err => {
+        getApp().hideLoading();
         wx.showToast({
           title: 'fail'
         })

@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view>
   <image mode='widthFix' src='{{chiShaUrl}}'></image>
-  <navigator url="../index/index" open-type="navigate" class="uploader">
-    <text class="uploader-text">点我！点我！点我！</text>
-  </navigator>
+  <view open-type="navigate" class="uploader">
+    <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">点我！点我！点我！</button>
+  </view>
 </view>

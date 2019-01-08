@@ -1,8 +1,16 @@
 <!--miniprogram/pages/what2eat/what2eat.wxml-->
 <view>
-  <view wx:for='{{list}}' wx:key='name' class='buttonRow'>
-    <view class='dish_name'>名称：{{item.dishName}}</view>
-    <view class='buttonLike' data-id='{{item.dishId}}' bindtap='iMadeBtn'>做这个！</view>
+  <loading hidden="{{loading}}">
+    加载中...
+  </loading>
+  <view wx:if="{{list.length>0}}" hidden="{{!loading}}">
+    <view wx:for='{{list}}' wx:key='name' class='buttonRow'>
+      <view class='dish_name'>名称：{{item.dishName}}</view>
+      <view class='buttonLike' data-id='{{item.dishId}}' bindtap='iMadeBtn'>做这个！</view>
+    </view>
+  </view>
+  <view wx:else hidden="{{!loading}}">
+    <image mode='widthFix' src='{{nochiUrl}}'></image>
   </view>
 </view>
 <button bindtap='roll' type='primary' class='rollBtn'>换一换</button>

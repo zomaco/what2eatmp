@@ -9,13 +9,15 @@ exports.main = async(event, context) => {
   var retList = new Array();
   // 食材id
   const id = event.id;
-  console.log('ingredientId:' + id);
-  if (id != null && id != '') {
+  const openid = event.openid;
+  console.log('ingredientId:' + id + 'openid:' + openid);
+  if (id != null && id != '' && openid != null && openid != '') {
     // 查询食材关联菜单id
     const db = cloud.database();
     const _ = db.command;
     const dishIdResult = await db.collection('recipe').where({
-      ingredientId: id
+      ingredientId: id,
+      openid: openid
     }).field({
       dishId: true
     }).get();
@@ -42,7 +44,8 @@ exports.main = async(event, context) => {
           id: dishes[i]._id,
           name: dishes[i].name,
           category: dishes[i].category,
-          lastDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+          lastDate: date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
+          openid: dishes[i].openid
         };
       }
     }
